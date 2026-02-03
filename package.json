@@ -17,6 +17,7 @@
     "expo-asset": "latest",
     "expo-file-system": "latest",
     "expo-gl": "latest",
+    "framer-motion": "^12.30.1",
     "lucide-react": "0.563.0",
     "next": "15.5.3",
     "react": "19.1.0",

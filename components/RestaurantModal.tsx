@@ -1,6 +1,6 @@
 'use client';
 
-import { X, MapPin, ExternalLink, Star, Phone, Clock, Globe } from 'lucide-react';
+import { X, MapPin, ExternalLink, Star, Phone, Clock, Globe, Calendar } from 'lucide-react';
 import { useEffect } from 'react';
 
 export interface RestaurantInfo {
@@ -11,12 +11,13 @@ export interface RestaurantInfo {
   address: string;
   coralReview: string;
   gabiReview: string;
-  cuisine: string;
-  rating: number;
-  priceRange: string;
+  cuisine?: string;
+  rating?: number;
+  priceRange?: string;
   website?: string;
   phone?: string;
   hours?: string;
+  date?: string;
 }
 
 interface RestaurantModalProps {
@@ -106,10 +107,18 @@ export default function RestaurantModal({
             <ExternalLink className="w-3 h-3 text-neutral-400 group-hover:text-blue-500 mt-0.5 shrink-0" />
           </a>
 
+          {/* Dining Date */}
+          {restaurant.date && (
+            <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
+              <Calendar className="w-4 h-4 text-neutral-400 shrink-0" />
+              <span>{restaurant.date}</span>
+            </div>
+          )}
+
           {/* Reviews */}
           <div className="space-y-3 pt-2 border-t border-neutral-200 dark:border-neutral-700">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">Reviews</h3>
-            
+
             {/* Coral's Review */}
             <div className="space-y-1">
               <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Coral</p>
@@ -117,7 +126,7 @@ export default function RestaurantModal({
                 {restaurant.coralReview}
               </p>
             </div>
-            
+
             {/* Gabi's Review */}
             <div className="space-y-1">
               <p className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Gabi</p>
