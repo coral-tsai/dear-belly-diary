@@ -133,13 +133,18 @@ export default function Home() {
 					}}
 				/>
 			)}
-			<div className={`fixed inset-0 pointer-events-none z-20 flex transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] mix-blend-exclusion text-white
+			<div className={`fixed inset-0 pointer-events-none flex transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]
 				${viewMode === 'calendar'
-					? 'items-start justify-start p-6'
-					: 'items-center justify-center h-screen px-3'
+					? 'z-50 items-start justify-start p-6 text-black dark:text-white'
+					: 'z-20 items-center justify-center h-screen px-3 mix-blend-exclusion text-white'
 				}
 			`}>
-				<h1 className={`font-serif tracking-tight text-balance transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]
+				{/* Nav Background */}
+				<div className={`absolute top-0 left-0 w-full h-24 bg-[#cbc2c2]/10 dark:bg-[#262323]/10 backdrop-blur-md transition-opacity duration-700 -z-10 [mask-image:linear-gradient(to_bottom,black_40%,transparent)]
+					${viewMode === 'calendar' ? 'opacity-100' : 'opacity-0'}
+				`} />
+
+				<h1 className={`font-serif tracking-tight text-balance transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] relative
 					${viewMode === 'calendar'
 						? 'text-2xl md:text-3xl translate-x-0 translate-y-0'
 						: 'text-4xl md:text-7xl text-center'
@@ -150,7 +155,7 @@ export default function Home() {
 			</div>
 
 			{/* View Toggle Button */}
-			<div className="fixed top-6 right-6 z-40">
+			<div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40">
 				<div className="bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-full flex gap-1">
 					<button
 						onClick={() => setViewMode('gallery')}
@@ -173,13 +178,6 @@ export default function Home() {
 						<Calendar className="w-5 h-5" />
 					</button>
 				</div>
-			</div>
-
-			<div className={`text-center fixed bottom-10 left-0 right-0 font-mono uppercase text-[11px] font-semibold transition-opacity duration-300 ${viewMode === 'calendar' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-				<p>Click on any photo to view details</p>
-				<p className="opacity-60">
-					Scroll to move the timeline
-				</p>
 			</div>
 
 			<RestaurantModal
