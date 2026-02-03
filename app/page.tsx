@@ -133,9 +133,19 @@ export default function Home() {
 					}}
 				/>
 			)}
-			<div className="h-screen inset-0 pointer-events-none fixed flex items-center justify-center text-center px-3 mix-blend-exclusion text-white z-0">
-				<h1 className="font-serif text-4xl md:text-7xl tracking-tight text-balance">
-					Dear <span className="italic blod"> Belly </span> Diary,
+			<div className={`fixed inset-0 pointer-events-none z-20 flex transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] mix-blend-exclusion text-white
+				${viewMode === 'calendar'
+					? 'items-start justify-start p-6'
+					: 'items-center justify-center h-screen px-3'
+				}
+			`}>
+				<h1 className={`font-serif tracking-tight text-balance transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]
+					${viewMode === 'calendar'
+						? 'text-2xl md:text-3xl translate-x-0 translate-y-0'
+						: 'text-4xl md:text-7xl text-center'
+					}
+				`}>
+					Dear <span className="italic bold"> Belly </span> Diary,
 				</h1>
 			</div>
 
@@ -145,8 +155,8 @@ export default function Home() {
 					<button
 						onClick={() => setViewMode('gallery')}
 						className={`p-2 rounded-full transition-all duration-300 ${viewMode === 'gallery'
-								? 'bg-white text-black shadow-sm'
-								: 'text-white hover:bg-white/10'
+							? 'bg-white text-black shadow-sm'
+							: 'text-white hover:bg-white/10'
 							}`}
 						aria-label="Gallery View"
 					>
@@ -155,8 +165,8 @@ export default function Home() {
 					<button
 						onClick={() => setViewMode('calendar')}
 						className={`p-2 rounded-full transition-all duration-300 ${viewMode === 'calendar'
-								? 'bg-white text-black shadow-sm'
-								: 'text-white hover:bg-white/10'
+							? 'bg-white text-black shadow-sm'
+							: 'text-white hover:bg-white/10'
 							}`}
 						aria-label="Calendar View"
 					>
